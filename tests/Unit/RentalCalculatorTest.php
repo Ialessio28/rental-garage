@@ -21,8 +21,6 @@ class RentalCalculatorTest extends TestCase
         $this->calculator = new RentalCalculator();
     }
 
-    // ---------- allowedGarageTypes ----------
-
     public function test_allowedGarageTypes_electricCar_returnsCarAndElectric(): void
     {
         // Act
@@ -41,8 +39,6 @@ class RentalCalculatorTest extends TestCase
     {
         $this->assertSame([], $this->calculator->allowedGarageTypes('truck'));
     }
-
-    // ---------- maxDailyDays ----------
 
     public function test_maxDailyDays_november_returns29(): void
     {
@@ -65,8 +61,6 @@ class RentalCalculatorTest extends TestCase
     {
         $this->assertSame(28, $this->calculator->maxDailyDays(Carbon::parse('2028-02-10')));
     }
-
-    // ---------- rentalDays and endDate ----------
 
     public function test_rentalDays_monthlyInFebruary_returns28(): void
     {
@@ -97,8 +91,6 @@ class RentalCalculatorTest extends TestCase
         $this->assertSame('2026-11-21', $start->toDateString()); // the start date is not changed
     }
 
-    // ---------- rentCost ----------
-
     public function test_rentCost_monthly_returns25TimesDailyPrice(): void
     {
         $this->assertSame(250000, $this->calculator->rentCost(10000, 'monthly', 30));
@@ -113,8 +105,6 @@ class RentalCalculatorTest extends TestCase
     {
         $this->assertSame(50000, $this->calculator->rentCost(10000, 'daily', 5));
     }
-
-    // ---------- chargeCost ----------
 
     public function test_chargeCost_electricGarage_paysOnlyMissingKwh(): void
     {
@@ -145,8 +135,6 @@ class RentalCalculatorTest extends TestCase
     {
         $this->assertSame(0, $this->calculator->chargeCost('car', 100, 60, 2000));
     }
-
-    // ---------- extensionCost ----------
 
     public function test_extensionCost_fewDays_usesDailyPrice(): void
     {
